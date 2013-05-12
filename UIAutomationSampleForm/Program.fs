@@ -21,9 +21,17 @@ type MainForm() =
     let _btnTest = _wpf.FindName("btnTest") :?> Button
     let _txtNone = _wpf.FindName("textBox2") :?> TextBox
     let _chk = _wpf.FindName("checkBox1") :?> CheckBox
+
+    let radiobutton_event (a:RoutedEventArgs) =
+        let rb = a.Source :?> RadioButton
+        _txtView.Text <- Convert.ToString(rb.Content)
+        ()
     do
         _btnView.Click.Add(fun _ -> _txtView.Text <- "ああああ")
         _btnTest.Click.Add(fun _ -> MessageBox.Show("メッセージテスト") |> ignore)
+        _rb1.Click.Add radiobutton_event
+        _rb2.Click.Add radiobutton_event
+        _rb3.Click.Add radiobutton_event
         ()
     member x.WPF = _wpf
 
@@ -31,16 +39,5 @@ module Program =
     [<STAThread>]
     [<EntryPoint>]
     let run(_) =
-//        // TextBoxがフォーカスを受け取ると全選択する
-//        EventManager.RegisterClassHandler(
-//            typeof<TextBox>,
-//            TextBox.GotFocusEvent,
-//            new RoutedEventHandler(fun a b ->
-//                match a with
-//                | :? TextBox as t -> t.SelectAll()
-//                | _ -> ()))
-//        let wpf = Application.LoadComponent(new Uri("ChannelEditor.xaml", System.UriKind.Relative)) :?> Window
-//        let model = new ChannelEditorModel(wpf)
-//        (new Application()).Run(wpf)
         let form = new MainForm()
         (new Application()).Run(form.WPF)

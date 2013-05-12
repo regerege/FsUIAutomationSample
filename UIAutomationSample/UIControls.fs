@@ -2,6 +2,8 @@
 open System
 open System.Windows.Automation
 open System.Diagnostics
+open System.Drawing
+open Microsoft.Test.Input
 
 /// UIAutomationの共通補助関数
 module UIControlCommon =
@@ -45,6 +47,16 @@ type RadioButton (root, name) =
                 _selectionitem.Select()
             else
                 _selectionitem.RemoveFromSelection()
+//        ()
+    member x.Click() =
+        //TestApi - a library of Test APIs
+        //http://testapi.codeplex.com/
+        let rect = x.Current.BoundingRectangle
+        let x = int rect.X + (int rect.Width / 2)
+        let y = int rect.Y + (int rect.Height / 2)
+        Mouse.MoveTo(new Point(x, y))
+        Mouse.Click(MouseButton.Left)
+        ()
 
 type Button (root, name) =
     inherit UIControlBase(root,name)
@@ -61,5 +73,4 @@ type CheckBox (root, name) =
         and set v =
             if x.IsChecked <> v then
                 _p.Toggle()
-//    let _p = UIControlCommon.getPattern<
 

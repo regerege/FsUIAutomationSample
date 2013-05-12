@@ -16,22 +16,24 @@ type UIAutomationSampleForm (root:AutomationElement) =
     member x.CheckBox = new CheckBox(root, "checkBox1")
 
 type AutomationSample() =
-    let _process = Process.Start("UIAutomationSampleForm.exe")
+    let _path = @"D:\develop\github\FsUIAutomationSample\UIAutomationSampleForm\bin\Debug\UIAutomationSampleForm.exe"
+    let _process = Process.Start(_path)
     let getForm() = AutomationElement.FromHandle(_process.MainWindowHandle)
     member x.Run() =
         System.Threading.Thread.Sleep(1000)
         let form = new UIAutomationSampleForm(getForm())
-        
-        // プロパティ設定の自動化テスト
-        form.TextBox2.Text <- "aaa"
-        // 設定したプロパティ値の取得
-        printfn "TextBox2.Text = '%s'" <| form.TextBox2.Text
+//        
+//        // プロパティ設定の自動化テスト
+//        form.TextBox2.Text <- "aaa"
+//        // 設定したプロパティ値の取得
+//        printfn "TextBox2.Text = '%s'" <| form.TextBox2.Text
 
-        form.RadioButton1.IsChecked <- true
-        form.ButtonView.Click()
-        form.ButtonTest.Click()
+//        form.ButtonView.Click()
+//        form.ButtonTest.Click()
 
-        form.CheckBox.IsChecked <- not form.CheckBox.IsChecked
+//        form.CheckBox.IsChecked <- not form.CheckBox.IsChecked
+//        form.RadioButton1.IsChecked <- true
+        form.RadioButton2.Click()
 
     interface IDisposable with
         member i.Dispose() =

@@ -1,0 +1,163 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    WindowStartupLocation="CenterScreen"
+    Title="UIAutomation Sample Forme" Height="800" Width="1024"
+    AllowDrop="True">
+
+    <!-- 画面 -->
+    <Grid>
+    </Grid>
+    <!--<DockPanel>
+    -->
+    <!-- メニュー -->
+    <!--
+    <Menu Name="mainMenu" HorizontalAlignment="Stretch" VerticalAlignment="Top" DockPanel.Dock="Top" Height="23">
+      <MenuItem Header="_File">
+        <MenuItem Header="_Open"
+                  InputGestureText="Ctrl+O"
+                  Command="{Binding KeyCommand}"
+                  CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=InputGestureText}" />
+        <MenuItem Header="_Save"
+                  InputGestureText="Ctrl+S"
+                  Command="{Binding KeyCommand}"
+                  CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=InputGestureText}" />
+        <MenuItem Header="_Close" />
+      </MenuItem>
+      <MenuItem Header="_Edit">
+        <MenuItem Header="_Undo" Visibility="Hidden" />
+        <MenuItem Header="_Redo" Visibility="Hidden" />
+        <Separator />
+        <MenuItem Header="_Channel">
+          <MenuItem Header="Up _Move" />
+          <MenuItem Header="Down _Move" />
+          <MenuItem Header="Select Channels Yank"
+                InputGestureText="Alt+Y"
+                Command="{Binding YankChannelMoveCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=InputGestureText}" />
+          <MenuItem Header="Yank Channels Insert Up"
+                InputGestureText="Alt+Shift+P"
+                Command="{Binding YankChannelMoveCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=InputGestureText}" />
+          <MenuItem Header="Yank Channels Insert Down"
+                InputGestureText="Alt+P"
+                Command="{Binding YankChannelMoveCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=InputGestureText}" />
+          <Separator/>
+          <MenuItem Header="_Add top"
+                InputGestureText="Ctrl+Shift+K"
+                Command="{Binding ChannelCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=InputGestureText}" />
+          <MenuItem Header="_Add bottom"
+                InputGestureText="Ctrl+Shift+J"
+                Command="{Binding ChannelCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=InputGestureText}" />
+          <MenuItem Header="_Delete Select"
+                InputGestureText="Ctrl+Shift+D"
+                Command="{Binding ChannelCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=InputGestureText}" />
+          <Separator />
+          <MenuItem Header="_Copy Write Channels"
+                InputGestureText="Ctrl+Alt+C"
+                Command="{Binding KeyCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=InputGestureText}" />
+          <MenuItem Header="_Marge Channels"
+                InputGestureText="Ctrl+Alt+M"
+                Command="{Binding KeyCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=InputGestureText}" />
+        </MenuItem>
+      </MenuItem>
+    </Menu>
+    -->
+    <!-- ステータスバー -->
+    <!--
+    <StatusBar HorizontalAlignment="Stretch" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Height="23">
+      <TextBlock Name="txtStatus" Text="" />
+    </StatusBar>
+    -->
+    <!-- 縦方向の3カラムデザイン（中央） -->
+    <!--
+    <Grid Name="gridCenter">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition Width="7.5" />
+        <ColumnDefinition Width="350" />
+      </Grid.ColumnDefinitions>
+      -->
+    <!-- 左側の表 -->
+    <!--
+      <TabControl Grid.Column="0" Name="tabTuner" ItemsSource="{Binding Tuners}" SelectedIndex="{Binding SelectedTabIndex}">
+        <TabControl.ItemContainerStyle>
+          <Style TargetType="TabItem">
+            <Setter Property="Header" Value="{Binding TunerName}" />
+            <Setter Property="Content" Value="{Binding}" />
+            <Setter Property="ContentTemplate" Value="{StaticResource _channlesTemplate}" />
+          </Style>
+        </TabControl.ItemContainerStyle>
+      </TabControl>
+      -->
+    <!-- 中央スプリッター -->
+    <!--
+      <GridSplitter Name="splitter" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.Column="1">
+        <GridSplitter.Style>
+          <Style TargetType="GridSplitter">
+            <Style.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background">
+                  <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                      <GradientStop Color="Yellow" Offset="0" />
+                      <GradientStop Color="Red" Offset="0.25" />
+                      <GradientStop Color="Blue" Offset="0.75" />
+                      <GradientStop Color="LimeGreen" Offset="1" />
+                    </LinearGradientBrush>
+                  </Setter.Value>
+                </Setter>
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </GridSplitter.Style>
+      </GridSplitter>
+      -->
+    <!-- 右側の編集用パネル -->
+    <!--
+      <GroupBox Header="チャンネル編集" Margin="5" Grid.Column="2">
+        <StackPanel Name="editPanel" DataContext="{Binding Path=SelectedChannel, Mode=TwoWay}">
+          <DockPanel Margin="0,0,0,15">
+            <TextBlock VerticalAlignment="Center" Width="100" Margin="0,0,10,0" TextAlignment="Center" Text="番組名"></TextBlock>
+            <TextBox Text="{Binding ChannelName, Mode=TwoWay}" Name="txtChannelName" />
+          </DockPanel>
+          <DockPanel Margin="0,0,0,15">
+            <TextBlock Margin="0,0,10,0" TextAlignment="Center" VerticalAlignment="Center" Width="100" Text="チューナ空間"></TextBlock>
+            <TextBox Text="{Binding TunerID, StringFormat=F0, Mode=TwoWay}" Name="txtTuner" />
+          </DockPanel>
+          <DockPanel Margin="0,0,0,15">
+            <TextBlock Margin="0,0,10,0" TextAlignment="Center" VerticalAlignment="Center" Width="100" Text="TPID"></TextBlock>
+            <TextBox Text="{Binding TransportID, Mode=TwoWay}" Name="txtTPID" />
+          </DockPanel>
+          <DockPanel Margin="0,0,0,15">
+            <TextBlock Margin="0,0,10,0" TextAlignment="Center" VerticalAlignment="Center" Width="100" Text="リモコン番号"></TextBlock>
+            <TextBox Text="{Binding RemoteControlNumber, Mode=TwoWay}" Name="txtRCNM" />
+          </DockPanel>
+          <DockPanel Margin="0,0,0,15">
+            <TextBlock Margin="0,0,10,0" TextAlignment="Center" VerticalAlignment="Center" Width="100" Text="サービスID"></TextBlock>
+            <TextBox Text="{Binding ServiceID, Mode=TwoWay}" Name="txtServiceID" />
+          </DockPanel>
+          <DockPanel Margin="0,0,0,15">
+            <TextBlock Margin="0,0,10,0" TextAlignment="Center" VerticalAlignment="Center" Width="100" Text="ネットワークID"></TextBlock>
+            <TextBox Text="{Binding NetworkID, Mode=TwoWay}" Name="txtNetworkID" />
+          </DockPanel>
+          <DockPanel Margin="0,0,0,15">
+            <TextBlock Margin="0,0,10,0" TextAlignment="Center" VerticalAlignment="Center" Width="100" Text="TSID"></TextBlock>
+            <TextBox Text="{Binding TransportStreamID, Mode=TwoWay}" Name="txtTSID" />
+          </DockPanel>
+          <DockPanel Margin="0,0,0,15">
+            <TextBlock Margin="0,0,10,0" TextAlignment="Center" VerticalAlignment="Center" Width="100" Text="表示/非表示"></TextBlock>
+            <CheckBox IsChecked="{Binding Enabled, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Name="chkEnabled" />
+          </DockPanel>
+        </StackPanel>
+      </GroupBox>
+    </Grid>
+  </DockPanel>-->
+</Window>
